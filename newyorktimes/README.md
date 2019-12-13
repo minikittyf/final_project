@@ -47,7 +47,7 @@ And the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("QMSS-G5072-2019/Gao_Fengyi")
+devtools::install_github("minikitty/final_project/newyorktimes")
 ```
 
 ## Example
