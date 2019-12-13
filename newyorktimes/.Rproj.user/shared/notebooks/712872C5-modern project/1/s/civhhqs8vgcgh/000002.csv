@@ -1,0 +1,20 @@
+"0","```r
+u <- 'https://api.nytimes.com/services/xml/rss/nyt/Arts.xml'
+library(xml2)
+
+# Get XML
+resp_xml <- GET('https://api.nytimes.com/services/xml/rss/nyt/Arts.xml')
+
+# Check response is XML 
+http_type(resp_xml)
+
+# Examine returned text with content()
+books_text <- content(resp_xml, as = \"text\")
+
+# Turn rev_text into an XML document
+books_xml <- read_xml(books_text)
+
+books_xml
+# Examine the structure of rev_xml
+#xml_structure(books_xml)
+```"

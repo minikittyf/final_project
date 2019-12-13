@@ -1,0 +1,25 @@
+Package: newyorktimes
+Type: Package
+Title: What the Package Does (Title Case)
+Version: 0.1.0
+Authors@R: person("Fengyi", "Gao", email = "fg2492@columbia.edu", role = c("aut", "cre"))
+Maintainer: The package maintainer <fg2492@columbia.edu>
+Description: This pacakge make it easier for clients to get to use the New York Times API and get the article's information
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    httr,
+    stringr,
+    plyr,
+    tidyr,
+    jsonlite,
+    dplyr,
+    xml2
+RoxygenNote: 6.1.1
+Suggests: 
+    testthat,
+    lintr,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

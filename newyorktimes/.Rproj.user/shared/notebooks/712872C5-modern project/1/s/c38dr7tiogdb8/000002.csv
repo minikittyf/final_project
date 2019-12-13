@@ -1,0 +1,22 @@
+"0","```r
+specific_articles <- function(year, month){
+  search_url <- 'https://api.nytimes.com/svc/archive/v1/'
+  new_url <- paste(search_url, year, '/', month, '.', 'json', sep = '')
+  search_r <- GET(new_url, query = list('api-key'=Sys.getenv(\"NYT_KEY\")))
+  search_c <- content(search_r)
+  search_nyt <- fromJSON(toJSON(search_c))
+  head <- search_nyt$response$docs$headline$main
+  head[sapply(head, function(x){length(x)==0})] <- NA
+  abstract <- search_nyt$response$docs$abstract
+  category <- search_nyt$response$docs$news_desk
+  date <- search_nyt$response$docs$pub_date 
+  url <- search_nyt$response$docs$web_url
+  words <- search_nyt$response$docs$word_count
+  category[sapply(category, function(x){length(x)==0})] <- NA
+  search_data <- data.frame('head' = unlist(head), 'category' = unlist(category), 'date' = unlist(date), 'url' = unlist(url), 'words'= unlist(words))
+  public_date <- str_extract(search_data[,3], \"[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]\") #clean the date in the dataset
+  search_data$date <- public_date
+  arrange(search_data)
+  return(search_data)
+}
+```"

@@ -1,0 +1,11 @@
+"0","```r
+R.home(component = \"home\")
+```"
+"1","[1] \"/Library/Frameworks/R.framework/Resources\"
+"
+"0","```r
+usethis::edit_r_environ()
+```"
+"1","[31m●[39m Modify [34m'/Users/gfy/.Renviron'[39m
+[31m●[39m Restart R for changes to take effect
+"

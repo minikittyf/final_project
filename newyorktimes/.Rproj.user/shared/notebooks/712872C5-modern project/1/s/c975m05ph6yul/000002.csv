@@ -1,0 +1,38 @@
+"0","```r
+search_article <- function(topic, searchdate=20191231){
+  abstract <- list()
+  web_url <- list()
+  lead_paragraph <- list()
+  headline <- list()
+  public_date <- list()
+  author <- list()
+  words <- list()
+  category <- list()
+  search_url <- \"https://api.nytimes.com/svc/search/v2/articlesearch.json\"
+  query_paramater <- list(q=topic,end_date=searchdate,'api-key'=Sys.getenv(\"NYT_KEY\"))
+  search_r <- GET(search_url, query=query_paramater)
+  c <- content(search_r)
+  for(i in 1:10){
+    abstract[[i]] <- c$response$docs[[i]]$abstract
+    web_url[[i]] <- c$response$docs[[i]]$web_url
+    lead_paragraph[[i]] <- c$response$docs[[i]]$lead_paragraph
+    headline[[i]] <- c$response$docs[[i]]$headline$main
+    public_date[[i]] <- c$response$docs[[i]]$pub_date
+    words[[i]] <- c$response$docs[[i]]$word_count
+    category[[i]] <- c$response$docs[[i]]$news_desk
+    category[sapply(category, function(x){length(x)==0})] <- NA
+  }
+  
+  output <- data.frame('category' = unlist(category), 'headline'=unlist(headline), 'abstract' = unlist(abstract), 'lead_paragraph' = unlist(lead_paragraph), 'url' = unlist(web_url), 'date' = unlist(public_date), 'words' = unlist(words))
+  
+  public_date <- str_extract(output[,6], \"[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]\") #clean the date in the dataset
+  output$date <- public_date
+  
+  new_output <- output %>%
+    group_by(category) %>%
+    separate(date, c('year', 'month', 'day'), sep = '-') %>%
+    arrange(words)
+  
+  return(new_output)
+  }
+```"

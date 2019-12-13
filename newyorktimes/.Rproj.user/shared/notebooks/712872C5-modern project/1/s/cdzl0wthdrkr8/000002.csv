@@ -1,0 +1,19 @@
+"0","```r
+mostpoplar <- function(type='shared', period=1){
+  search_url <- 'https://api.nytimes.com/svc/mostpopular/v2/'
+  url <- paste(search_url, type, '/', period, '.', 'json', sep = '')
+  search_r <- GET(url, query = list('api-key'=Sys.getenv(\"NYT_KEY\")))
+  search_c <- content(search_r)
+  search_nyt <- fromJSON(toJSON(search_c))
+  url <- search_nyt$results$url
+  section <- search_nyt$results$section
+  author <- search_nyt$results$byline
+  author[sapply(author, function(x){length(x)==0})] <- NA
+  title <- search_nyt$results$title
+  abstract <- search_nyt$results$abstract
+  abstract[sapply(abstract, function(x){length(x)==0})] <- NA
+  date <- search_nyt$results$published_date
+  result <- data.frame('url' = unlist(url),'category' = unlist(section), 'author' = unlist(author),'title' = unlist(title), 'abstract' = unlist(abstract), 'date' = unlist(date))
+  return(result)
+}
+```"

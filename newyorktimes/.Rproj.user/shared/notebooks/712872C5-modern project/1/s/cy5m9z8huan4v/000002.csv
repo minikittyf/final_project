@@ -1,0 +1,22 @@
+"0","```r
+comments <- function(your_url){
+#  populardata <- mostpoplar(type, period)
+#  url_list <- populardata$url
+#  len <- length(url_list)
+#  comment <- list()
+#  for(i in 1:len){
+  base <- 'https://api.nytimes.com/svc/community/v3/user-content/url.json'
+  query_list <- list('api-key' = Sys.getenv(\"NYT_KEY\"), offset=0, url = your_url)
+  com_r <- GET(base, query=query_list)
+  com_c <- content(com_r)
+  com_nyt <- fromJSON(toJSON(com_c))
+  userid <- com_nyt$results$comments$userID
+  username <- com_nyt$results$comments$userDisplayName
+  userlocation <- com_nyt$results$comments$userLocation
+  comment <- com_nyt$results$comments$commentBody
+  rec <- com_nyt$results$comments$recommendations
+  comment_data <- data.frame('userid' = unlist(userid), 'username' = unlist(username), 'location' = unlist(userlocation), 'comment' = unlist(comment), 'recommendation' = unlist(rec))
+  arrange(comment_data, recommendation)
+  return(comment_data)
+}
+```"

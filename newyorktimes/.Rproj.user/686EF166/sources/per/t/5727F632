@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1576092882662.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1400073437",
+    "id" : "5727F632",
+    "lastKnownWriteTime" : 1576260735,
+    "last_content_update" : 1576260735880,
+    "path" : "~/Documents/GitHub/Gao_Fengyi/Final_Project/newyorktimes/R/newyorktimes.R",
+    "project_path" : "R/newyorktimes.R",
+    "properties" : {
+        "cursorPosition" : "78,11",
+        "scrollLine" : "85"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

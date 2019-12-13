@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1576258840944.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "305075348",
+    "id" : "A1361249",
+    "lastKnownWriteTime" : 1576261017,
+    "last_content_update" : 1576261017,
+    "path" : "~/Documents/GitHub/Gao_Fengyi/Final_Project/newyorktimes/NAMESPACE",
+    "project_path" : "NAMESPACE",
+    "properties" : {
+        "cursorPosition" : "0,0",
+        "scrollLine" : "0"
+    },
+    "read_only" : true,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_namespace"
+}

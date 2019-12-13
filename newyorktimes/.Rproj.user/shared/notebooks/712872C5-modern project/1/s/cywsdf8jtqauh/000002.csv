@@ -1,0 +1,13 @@
+"0","```r
+best_recommend <- function(your_url){
+  rec_data <- comments(your_url)
+  best <- rec_data %>%
+    filter(recommendation == max(recommendation))
+  return(best$comment)
+}
+
+best_recommend('https://www.nytimes.com/2019/12/08/opinion/donald-trump-impeachment.html')
+```"
+"1","[1] The idea expressed in this piece that impeachment should be on the merits instead of politics strikes at the heart of why so many of us are so distrustful of what goes on in DC.  Of course it should be the merits of the case that form the essence of the impeachment case!!!  This political culture of shifting masks for the purpose of manipulating public opinion is so very phony!
+25 Levels: And what about treason? I don't know why that isn't being discussed.\n\nAlso, if Trump were truly concerned about Ukraine corruption, why did he hire Paul Manafort as his campaign manager? Again, I don't know why nobody is mentioning this. ...
+"

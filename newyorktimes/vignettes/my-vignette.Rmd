@@ -1,0 +1,133 @@
+---
+title: "my-vignette"
+author: "Fengyi Gao"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{my-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(newyorktimes)
+```
+
+## Function 1: search_article(topic, searchdate)
+### Description:  
+
+This function help to find topic 10 new york times related articles to your search topic around your search date. 
+
+### Parameter:  
+
+* The parameter `topic` must be characters
+* The parameter `searchdate` must a numeric in `yearmonthdate` format, for example: `20190101`.  
+
+
+### Output:  
+
+The output will be a dataframe include article's category, headline, abstract, lead paragraph, url, published year, published month, published day, total words of article. 
+
+```{r}
+search_article('new york', 20191231)
+```
+
+## Function 2: mostpopular(type, period)
+
+
+### Description: 
+This function help to find most popular new york times articles.  
+
+### Parameter: 
+
+* The parameter `type` must be characters and must choose from the following:  
+
+> `shared` : the most popular shared articles  
+`viewed` : the most popular viewed articles  
+`emailed` : the most popular emailed articles  
+
+* The parameter `period` must a numeric of 1,7 or 30.
+
+### Output:  
+The output will be a dataframe inclde article's category, headline, abstract, lead paragraph, url, published year, published month, published day, total words of article 
+
+```{r}
+mostpopular("emailed", 1)
+```
+
+## Function 3: comments(your_url)
+
+### Description:  
+This function help to find top 25 comments based on new york times articles' url.  
+
+### Parameter:
+The parameter `your_url` must be a character.  
+
+### Output:  
+The output will be a dataframe inclde include user id, user name, user location, and user comments.  
+
+```{r}
+comments('https://www.nytimes.com/2019/12/08/opinion/donald-trump-impeachment.html')
+```
+
+## Function 4: best_recommend(your_url)
+
+### Description:  
+This function help to find the comments that have the max recommendations based on new york times articles' url.  
+
+### Paramter:  
+* The parameter `your_url` must be a character.  
+
+### Output:
+The output will be the most recommend user comments.  
+
+```{r}
+best_recommend('https://www.nytimes.com/2019/12/08/opinion/donald-trump-impeachment.html')
+```
+
+## Function 5: rss_rank(search_section)
+### Description:  
+This function help to Get recent ranked articles' information based on your search section. 
+
+### Parameter:  
+* The parameter `search_section` must be a character and must choose from the following:  
+
+>Africa, Americas, ArtandDesign, Arts, AsiaPacific, Automobile, Baseball, Books, Business, Climate, CollegeBasketball, CollegeFootball, Dance, Dealbook, DiningandWine, Economy, Education, EnergyEnvironment, Europe, FashionandStyle, Golf, Health, Hockey, HomePage, Jobs, Lens, MediaandAdvertising, MiddleEast, MostEmailed, MostShared, MostViewed, Movies, Music, NYRegion, Obituaries, PersonalTech, Politics, ProBasketball, ProFootball, RealEstate, Science, SmallBusiness, Soccer, Space, Sports, SundayBookReview, Sunday-Review, Technology, Television, Tennis, Theater, TMagazine, Travel, Upshot, US, Weddings, Well, YourMoney
+
+### Output:  
+The output will be a dataframe inclde article's title, link, description, published date, and their rank. 
+
+```{r}
+rss_rank('Arts')
+```
+
+## Function 6: specific_articles(year, month)
+### Description:
+This function help to Get all articles' infomation based on the specific year and month.  
+
+### Parameter:  
+* The parameter `year` must a numeric in `year` format, for example: `2019`
+* The parameter `month` must a numeric in `month` format, for example: `1`
+
+### Output:  
+The output will be a dataframe inclde article's category, head, url, published date, total words of article.  
+
+### Note: 
+The size  can be large, so there may need some minutes to get the results.  
+There only show first 10 rows of the dataframe.  
+
+
+```{r}
+specific_articles(2019,1) %>%
+  head(n=10)
+```
+
+
+
